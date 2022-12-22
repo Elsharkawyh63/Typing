@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        p{
+            text-align: center;
+            font-family: monospace;
+            font-size: x-large;
+            line-height: 1.6;
+        }
+        span{
+            padding: 2px 0px;
+        }
+        .inp{
+            width:100%;
+            display: flex;
+            justify-content: center;
+        }
+        input{
+            width: 50%;
+            margin-left: auto;
+            margin-right: auto;
+            height: 45px;
+            text-align: center;
+            font-family: monospace;
+            font-size: x-large;
+            border-radius: 15px;
+        }
+        hr{
+            width: 100%;
+        }
+        .disabledbutton {
+            pointer-events: none;
+            opacity: 0.4;
+        }
+    </style>
+</head>
+<body>
+    <p class="parg">In sociology, the family is taken as the smallest unit of society. The world is vast and family is the smallest part of it. Various sociological surveys say that it is important for every human being. For coping-up with the harsh scenarios of the outside world, the support of loved ones is important. A human is a family man; from the childhood stage to adolescence he/she learns things from his domestic environment. In the journey of life, a person grows into a personality.</p>
+
+    <hr><div class="inp"><input type="text" class="tex" /></div>
+<script>
+    let a = document.querySelector(".parg");
+let arr = a.innerHTML.split(" ");
+for(i=0 ; i < arr.length ; i++){
+    arr[i] = `<span>${arr[i]}</span>` ;
+}
+a.innerHTML = arr.join(" ") ;
+let d = document.querySelectorAll("span");
+let b = 0; 
+let n = d.length ;
+let cor = 0 ;
+let incor = 0 ;
+function los(r){
+    let inpu = document.querySelector("input");
+    inpu.classList.add("disabledbutton");
+    let cr = document.createElement("h3");
+    let crt = document.createTextNode(`Game Finished Your Score is : ${Math.floor(r)}%`);
+    let cont = document.querySelector("body");
+    cont.appendChild(cr);
+    cr.appendChild(crt);
+    inpu.blur();
+}
+document.body.onkeyup = function(e) {
+  if (      
+      e.keyCode == 32      
+  ) {
+    if(b < n){
+        let c = document.querySelector(".tex").value.trim();
+        if(c === d[b].innerHTML){
+            document.querySelector(".tex").value = "";
+            d[b].style.backgroundColor = "lightgreen";
+            b++ ;
+            cor++ ;
+            if(b == n ){
+                p = (cor *100) / n ;
+                los(p);
+            }
+        }else{
+            document.querySelector(".tex").value = "";
+            d[b].style.backgroundColor = "red";
+            b++ ;
+            incor++ ;
+            if(b == n ){
+                p = (cor *100) / n ;
+                console.log(Math.floor(p)+`%`);
+                los(p);
+            }
+        }
+    }
+  }
+    // setTimeout( los(10), 1000 );
+}
+</script>
+</body>
+</html>
