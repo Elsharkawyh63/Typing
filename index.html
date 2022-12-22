@@ -16,6 +16,13 @@
             font-family: monospace;
             font-size: x-large;
             line-height: 1.6;
+            /* max-height: 200px;
+            overflow:scroll; */
+        }
+        @media(max-width:767px){
+            p{
+                font-size: 14px;
+            }
         }
         span{
             padding: 2px 0px;
@@ -60,15 +67,28 @@ let b = 0;
 let n = d.length ;
 let cor = 0 ;
 let incor = 0 ;
+let timer = 0 ;
+let start = 0 ;
 function los(r){
     let inpu = document.querySelector("input");
     inpu.classList.add("disabledbutton");
     let cr = document.createElement("h3");
-    let crt = document.createTextNode(`Game Finished Your Score is : ${Math.floor(r)}%`);
+    let crt = document.createTextNode(`Game Finished Your Score is : ${Math.floor(r)}%  You've typed ${cor} Words in ${timer} Seconds`);
     let cont = document.querySelector("body");
     cont.appendChild(cr);
     cr.appendChild(crt);
     inpu.blur();
+    clearInterval(inter);
+}
+let dd = document.querySelector("input");
+dd.onkeyup = function(){
+    let at = dd.value ;
+    if(at.length == 1 && start == 0){
+        start = 1 ;
+        return inter = setInterval(function(){
+            timer++ ;
+        }, 1000);
+    }
 }
 document.body.onkeyup = function(e) {
   if (      
@@ -98,7 +118,6 @@ document.body.onkeyup = function(e) {
         }
     }
   }
-    // setTimeout( los(10), 1000 );
 }
 </script>
 </body>
