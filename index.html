@@ -21,7 +21,7 @@
         }
         @media(max-width:767px){
             p{
-                font-size: 16px;
+                font-size: 18px;
             }
         }
         span{
@@ -53,12 +53,20 @@
             font-family: monospace;
             font-size: x-large;
         }
+        h4{
+            width: 100%;
+            text-align: center;
+            font-family: monospace;
+            font-size: x-large;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
     <p class="parg">In sociology, the family is taken as the smallest unit of society. Various sociological surveys say that it is important for every human being. For coping-up with the harsh scenarios of the outside world, the support of loved ones is important. A human is a family man; from the childhood stage to adolescence he/she learns things from his domestic environment.</p>
 
     <hr><div class="inp"><input type="text" class="tex" /></div>
+    <h4>Restart</h4>
 <script>
     let a = document.querySelector(".parg");
 let arr = a.innerHTML.split(" ");
@@ -78,8 +86,8 @@ function los(r){
     inpu.classList.add("disabledbutton");
     let cr = document.createElement("h3");
     let crt = document.createTextNode(`Game Finished Your Score is : ${Math.floor(r)}%  You've typed ${cor} Words in ${timer} Seconds`);
-    let cont = document.querySelector("body");
-    cont.appendChild(cr);
+    let cont = document.querySelector("h4");
+    cont.prepend(cr);
     cr.appendChild(crt);
     inpu.blur();
     clearInterval(inter);
@@ -95,9 +103,7 @@ dd.onkeyup = function(){
     }
 }
 document.body.onkeyup = function(e) {
-  if (      
-      e.keyCode == 32      
-  ) {
+  if (e.keyCode == 32){
     if(b < n){
         let c = document.querySelector(".tex").value.trim();
         if(c === d[b].innerHTML){
@@ -122,6 +128,25 @@ document.body.onkeyup = function(e) {
         }
     }
   }
+}
+let restar = document.querySelector("h4");
+restar.onclick = function(){
+    let header = document.querySelector("h3");
+    if(header != null){
+        header.remove();
+        clearInterval(inter);
+    }
+    let spa = document.querySelectorAll("span");
+    for(i = 0 ; i < spa.length ; i++){
+        spa[i].style.backgroundColor = "";
+    }
+     b = 0; 
+     cor = 0 ;
+     incor = 0 ;
+     timer = 0 ;
+     start = 0 ;
+     let inpu = document.querySelector("input");
+    inpu.classList.remove("disabledbutton");
 }
 </script>
 </body>
