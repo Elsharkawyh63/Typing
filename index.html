@@ -21,7 +21,7 @@
         }
         @media(max-width:767px){
             p{
-                font-size: 15px;
+                font-size: 14px;
             }
         }
         span{
@@ -67,7 +67,18 @@
 
     <hr><div class="inp"><input type="text" class="tex" /></div>
     <h4>Restart</h4>
+    <audio class="a1">
+        <source src="media/right.mp3" type="audio/mpeg">
+        <source src="media/right.wav" type="audio/wav">
+        dont suppurt
+    </audio>
+    <audio class="a2">
+        <source src="media/wrong.mp3" type="audio/mpeg">
+        <source src="media/wrong.mp3" type="audio/wav">
+    </audio>
 <script>
+    let sound1 = document.querySelector(".a1");
+    let sound2 = document.querySelector(".a2");
     let a = document.querySelector(".parg");
 let arr = a.innerHTML.split(" ");
 for(i=0 ; i < arr.length ; i++){
@@ -115,6 +126,7 @@ document.body.onkeyup = function(e) {
                 p = (cor *100) / n ;
                 los(p);
             }
+            sound1.play();
         }else{
             document.querySelector(".tex").value = "";
             d[b].style.backgroundColor = "red";
@@ -125,6 +137,7 @@ document.body.onkeyup = function(e) {
                 console.log(Math.floor(p)+`%`);
                 los(p);
             }
+            sound2.play();
         }
     }
   }
